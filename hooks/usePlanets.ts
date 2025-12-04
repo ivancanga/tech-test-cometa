@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import { Planet } from "@/types/Planet";
-
-const BASE_URL = "https://swapi.py4e.com/api/planets/";
+import { fetchPlanets } from "@/services/planets";
 
 export function usePlanets() {
   const [planets, setPlanets] = useState<Planet[]>([]);
@@ -17,8 +15,7 @@ export function usePlanets() {
 
     setLoading(true);
 
-    const res = await fetch(`${BASE_URL}?page=${page}`);
-    const data = await res.json();
+    const data = await fetchPlanets(page);
 
     setPlanets((prev) => [...prev, ...data.results]);
     setPage((prev) => prev + 1);
