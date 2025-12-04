@@ -15,11 +15,14 @@ export function usePlanets() {
 
     setLoading(true);
 
-    const data = await fetchPlanets(page);
-
-    setPlanets((prev) => [...prev, ...data.results]);
-    setPage((prev) => prev + 1);
-    setHasMore(Boolean(data.next));
+    try {
+      const data = await fetchPlanets(page);
+      setPlanets((prev) => [...prev, ...data.results]);
+      setPage((prev) => prev + 1);
+      setHasMore(Boolean(data.next));
+    } catch (err) {
+      console.error("Failed to load planets:", err);
+    }
 
     setLoading(false);
   }
