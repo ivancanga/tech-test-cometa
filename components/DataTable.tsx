@@ -21,7 +21,7 @@ export function DataTable<T>({ data, columns }: Props<T>) {
 
   return (
     <table className="w-full text-sm text-gray-800 border-collapse">
-      <thead className="border-b border-gray-200 bg-gray-50">
+      <thead className="border-b border-gray-200">
         {table.getHeaderGroups().map((hg) => (
           <tr key={hg.id}>
             {hg.headers.map((header) => (

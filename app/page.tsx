@@ -12,21 +12,21 @@ export default function Page() {
       <div className="w-full max-w-6xl bg-white rounded-lg shadow-[0_4px_20px_rgba(0,0,0,0.1)] overflow-hidden">
         
         {/* Header */}
-        <div className="p-6 border-b border-gray-200">
-          <h1 className="text-2xl font-semibold text-gray-800">
+        <div className="p-6">
+          <h1 className="text-2xl font-bold text-gray-800">
             Planetas y cuerpos celestes
           </h1>
         </div>
 
         {/* Tabla */}
-        <section className="p-6">
+        <section className="px-6">
           <DataTable data={planets} columns={columns} />
 
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-center my-6">
             <button
               onClick={loadMore}
               disabled={!hasMore || loading}
-              className="px-6 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100 transition disabled:opacity-50"
+              className="px-6 py-2 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-100 transition disabled:opacity-50 cursor-pointer"
             >
               {loading ? "Cargando..." : hasMore ? "Cargar más" : "No hay más planetas"}
             </button>

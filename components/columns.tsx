@@ -7,7 +7,28 @@ import { BooleanBadge } from "./BooleanBadge";
 import { formatNumber, formatPopulation, capitalize } from "@/utils/format";
 import { WeatherBadge } from "./WeatherBadge";
 
+const selectionColumn: ColumnDef<Planet> = {
+  id: "select",
+  header: ({ table }) => (
+    <input
+      type="checkbox"
+      checked={table.getIsAllPageRowsSelected()}
+      onChange={table.getToggleAllPageRowsSelectedHandler()}
+    />
+  ),
+  cell: ({ row }) => (
+    <input
+      type="checkbox"
+      checked={row.getIsSelected()}
+      onChange={row.getToggleSelectedHandler()}
+    />
+  ),
+  enableSorting: false,
+  enableHiding: false,
+};
+
 export const columns: ColumnDef<Planet>[] = [
+  selectionColumn,
   {
     accessorKey: "name",
     header: "Nombre",
@@ -15,12 +36,16 @@ export const columns: ColumnDef<Planet>[] = [
   {
     accessorKey: "climate",
     header: "Clima",
-    cell: ({ getValue }) => <WeatherBadge>{capitalize(String(getValue()))}</WeatherBadge>,
+    cell: ({ getValue }) => (
+      <WeatherBadge>{capitalize(String(getValue()))}</WeatherBadge>
+    ),
   },
   {
     accessorKey: "terrain",
     header: "Terreno",
-    cell: ({ getValue }) => <TerrainBadge>{capitalize(String(getValue()))}</TerrainBadge>,
+    cell: ({ getValue }) => (
+      <TerrainBadge>{capitalize(String(getValue()))}</TerrainBadge>
+    ),
   },
   {
     accessorKey: "gravity",
@@ -33,11 +58,7 @@ export const columns: ColumnDef<Planet>[] = [
   },
   {
     accessorKey: "rotation_period",
-    header: "Rotación (hs)",
-  },
-  {
-    accessorKey: "orbital_period",
-    header: "Orbital (días)",
+    header: "Período de rotación",
   },
   {
     accessorKey: "surface_water",

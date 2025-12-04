@@ -1,9 +1,10 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Raleway } from "next/font/google";
 
-const inter = Inter({
+const raleway = Raleway({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-raleway",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata = {
@@ -12,8 +13,8 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={inter.variable}>
-      <body className="font-inter">{children}</body>
+    <html lang="es" className={raleway.variable}>
+      <body className="font-raleway">{children}</body>
     </html>
   );
 }
